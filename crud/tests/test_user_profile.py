@@ -59,7 +59,6 @@ class UserProfileTests(UserProfileSetUp):
             "contact_number": "987654",
         }
         response = self.client.put(url, data, format="json")
-        print(response.data)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
     def test_update_user_fail(self):
