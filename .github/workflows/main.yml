@@ -4,6 +4,13 @@ on: [pull_request, push]
 jobs:
   test-and-coverage:
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:latest
+        env:
+          POSTGRES_USER: myuser
+          POSTGRES_PASSWORD: mypassword
+          POSTGRES_DB: mydb
     steps:
     - name: Check out code
       uses: actions/checkout@v2
