@@ -13,7 +13,7 @@ services:
 
   web:
     build: .
-    command: ["sh", "-c", "python manage.py test && coverage report -m"]
+    command: ["sh", "-c", "coverage run manage.py test && coverage report -m"]
     volumes:
       - .:/app
     depends_on:
