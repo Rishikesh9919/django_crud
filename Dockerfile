@@ -1,7 +1,7 @@
 # Use an official Python runtime as a parent image
-FROM python:3.8
+FROM python:3.11
 
-# Set environment variable to not write .pyc files
+# Set environment variables to prevent buffering and writing .pyc files
 ENV PYTHONDONTWRITEBYTECODE 1
 
 # Set environment variable to not buffer stdout and stderr
@@ -18,6 +18,3 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the rest of the application code into the container at /app
 COPY . /app/
-
-# Expose port 8000 for the Django development server
-EXPOSE 8000

@@ -1,22 +1,23 @@
 version: '3'
 services:
-  postgres:
+  db:
     image: postgres:latest
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
       POSTGRES_DB: user
     ports:
-      - "6200:5432"
+      - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
-  django_crud:
+  web:
     build: .
+    command: ["sh", "-c", "python manage.py test && coverage report -m"]
     volumes:
       - .:/app
     depends_on:
-      - postgres
+      - db
 
 volumes:
   postgres_data:

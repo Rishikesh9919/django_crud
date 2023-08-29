@@ -1,20 +1,10 @@
-# To Check the test coverage report of the project and its test health
 name: Test and Coverage
-on: [pull_request, push]
+
+on: [push]
+
 jobs:
   test-and-coverage:
     runs-on: ubuntu-latest
-    services:
-      postgres:
-        image: postgres:latest
-        env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: password
-          POSTGRES_DB: user
-        ports:
-          - "6210:5432"
-        volumes:
-          - postgres_data:/var/lib/postgresql/data
 
     steps:
     - name: Check out code
@@ -28,6 +18,14 @@ jobs:
     - name: Build and run Docker Compose
       run: |
         docker-compose up -d
-        docker-compose run django_crud bash -c "coverage run manage.py test && coverage report -m --fail-under=80"
+        docker-compose run web
 
-
+    - name: Check coverage
+      run: |
+        COVERAGE_PERCENT=$(docker-compose run web coverage report | grep TOTAL | awk '{print $NF}')
+        if [[ $(bc <<< "$COVERAGE_PERCENT >= 80") -eq 1 ]]; then
+          echo "Coverage is greater than or equal to 80%"
+        else
+          echo "Coverage is below 80%"
+          exit 1
+        fi
