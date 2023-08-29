@@ -28,10 +28,10 @@ jobs:
 
     - name: Check coverage
       run: |
-        COVERAGE_PERCENT=$(docker-compose run web coverage report | grep TOTAL | awk '{print $(NF-1)}')
+        COVERAGE_PERCENT=$(docker-compose run web coverage report | grep TOTAL | awk '{print $NF}')
         echo "COVERAGE_PERCENT: $COVERAGE_PERCENT"
-
-        if [ $(echo "$COVERAGE_PERCENT >= 80" | bc -l) -eq 1 ]; then
+        
+        if [[ "$COVERAGE_PERCENT" == *"%" && "${COVERAGE_PERCENT%?}" -ge 80 ]]; then
           echo "Coverage is greater than or equal to 80%"
         else
           echo "Coverage is below 80%"
