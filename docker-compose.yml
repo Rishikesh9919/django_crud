@@ -14,7 +14,7 @@ services:
   django_crud:
     build: .
     volumes:
-      - .:/django_crud
+      - .:/app
     depends_on:
       - postgres
 
