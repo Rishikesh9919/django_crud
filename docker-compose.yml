@@ -11,10 +11,10 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
-  django_app:
+  django_crud:
     build: .
     volumes:
-      - .:/app
+      - .:/django_crud
     depends_on:
       - postgres
 
