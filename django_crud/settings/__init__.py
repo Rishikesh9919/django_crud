@@ -1,2 +1,2 @@
-# from .local import *
-from .ci_settings import *
+from .local import *
+# from .ci_settings import *
