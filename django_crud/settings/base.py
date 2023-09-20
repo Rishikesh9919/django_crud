@@ -128,5 +128,5 @@ REST_FRAMEWORK = {
     ],
 }
 
-TEST_RUNNER = "xmlrunner.extra.djangotestrunner.XMLTestRunner"
+TEST_RUNNER = "xmlrunner.XMLTestRunner"
 TEST_OUTPUT_DIR = ""
