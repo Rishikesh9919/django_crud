@@ -127,6 +127,3 @@ REST_FRAMEWORK = {
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ],
 }
-
-TEST_RUNNER = "xmlrunner.XMLTestRunner"
-TEST_OUTPUT_DIR = ""
