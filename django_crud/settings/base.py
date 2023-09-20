@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "crud",
     "rest_framework",
     "rest_framework_simplejwt",
+    "coverage",
 ]
 
 MIDDLEWARE = [
