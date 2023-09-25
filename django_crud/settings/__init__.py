@@ -1,2 +1,1 @@
-from .local import *
-# from .ci_settings import *
+from .db_setting import *

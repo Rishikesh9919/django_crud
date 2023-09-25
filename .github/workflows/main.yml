@@ -19,16 +19,16 @@ jobs:
       run: |
         docker-compose down
         docker-compose up -d
-        docker-compose run web python manage.py migrate
+        docker-compose run django_crud python manage.py migrate
 
     - name: Build and run Docker Compose
       run: |
         docker-compose up -d
-        docker-compose run web
+        docker-compose run django_crud
 
     - name: Check coverage
       run: |
-        COVERAGE_PERCENT=$(docker-compose run web coverage report | grep TOTAL | awk '{print $NF}')
+        COVERAGE_PERCENT=$(docker-compose run django_crud coverage report | grep TOTAL | awk '{print $NF}')
         echo "COVERAGE_PERCENT: $COVERAGE_PERCENT"
         
         if [[ "$COVERAGE_PERCENT" == *"%" && "${COVERAGE_PERCENT%?}" -ge 80 ]]; then
